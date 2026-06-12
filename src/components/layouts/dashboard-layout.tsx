@@ -24,6 +24,7 @@ import {
   Scale,
   Sun,
   Moon,
+  Newspaper,
 } from "lucide-react";
 
 interface NavItem {
@@ -59,6 +60,11 @@ const navItems: NavItem[] = [
     href: "/dashboard/appeals",
     icon: <Scale className="h-4 w-4" />,
     badge: 3,
+  },
+  {
+    label: "Digest",
+    href: "/dashboard/digest",
+    icon: <Newspaper className="h-4 w-4" />,
   },
   {
     label: "Alerts",
