@@ -5,7 +5,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  
+
   --color-brand-50: #eff6ff;
   --color-brand-100: #dbeafe;
   --color-brand-200: #bfdbfe;
@@ -16,10 +16,12 @@
   --color-brand-700: #1d4ed8;
   --color-brand-800: #1e40af;
   --color-brand-900: #1e3a8a;
-  
+
   --color-surface: var(--surface);
   --color-surface-secondary: var(--surface-secondary);
   --color-border: var(--border-color);
+  --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
 }
 
 :root {
@@ -28,16 +30,18 @@
   --surface: #f9fafb;
   --surface-secondary: #f3f4f6;
   --border-color: #e5e7eb;
+  --accent: #2563eb;
+  --accent-secondary: #7c3aed;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --surface: #111111;
-    --surface-secondary: #1a1a2e;
-    --border-color: #27272a;
-  }
+.dark {
+  --background: #0a0a0f;
+  --foreground: #e8e8ed;
+  --surface: #0d0d14;
+  --surface-secondary: #111122;
+  --border-color: #1e1e30;
+  --accent: #3b82f6;
+  --accent-secondary: #8b5cf6;
 }
 
 * {
@@ -52,10 +56,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar styling */
+/* Bloomberg Terminal-inspired scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -63,12 +67,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
+  background: #3b3b4a;
+  border-radius: 2px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #4b5563;
+  background: #3b3b4a;
 }
 
 /* Animations */
@@ -89,3 +93,60 @@ body {
 .animate-slide-in {
   animation: slideIn 0.2s ease-out;
 }
+
+/* Data-dense terminal grid */
+.terminal-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--border-color);
+}
+
+.terminal-grid > * {
+  background: var(--surface);
+}
+
+/* Monospace data values */
+.data-value {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Bloomberg-style data row */
+.data-row {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 12px;
+  transition: background 0.1s;
+}
+
+.data-row:hover {
+  background: var(--surface-secondary);
+}
+
+/* Terminal-style link */
+.terminal-link {
+  color: var(--accent);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.terminal-link:hover {
+  text-decoration: underline;
+}
+
+/* Status indicator dot */
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.open { background: #22c55e; }
+.status-dot.closed { background: #6b7280; }
+.status-dot.upcoming { background: #eab308; }
+.status-dot.allowed { background: #22c55e; }
+.status-dot.dismissed { background: #ef4444; }
+.status-dot.pending { background: #eab308; }
